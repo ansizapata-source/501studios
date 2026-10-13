@@ -1,18 +1,44 @@
 const projects = [
-  { number: '01', name: 'NORTE ABIERTO', type: 'Production / Editing', year: '2026', image: '' },
-  { number: '02', name: 'EN MOVIMIENTO', type: 'Creative Direction / Film', year: '2026', image: '' },
-  { number: '03', name: 'TIERRA FIRME', type: 'Production / Post-production', year: '2025', image: '' },
-  { number: '04', name: 'NOCHE LARGA', type: 'Film / Editing', year: '2025', image: '' },
-  { number: '05', name: 'OTRA FORMA', type: 'Campaign / Content', year: '2025', image: '' }
+  { name: 'NORTE ABIERTO', type: 'Production / Editing', year: '2026', image: '' },
+  { name: 'EN MOVIMIENTO', type: 'Creative Direction / Film', year: '2026', image: '' },
+  { name: 'TIERRA FIRME', type: 'Production / Post-production', year: '2025', image: '' },
+  { name: 'NOCHE LARGA', type: 'Film / Editing', year: '2025', image: '' },
+  { name: 'OTRA FORMA', type: 'Campaign / Content', year: '2025', image: '' }
 ];
 
 const projectsContainer = document.querySelector('#projects');
 projectsContainer.innerHTML = projects.map((project) => {
   const visual = project.image
     ? `<img src="${project.image}" alt="${project.name}">`
-    : `<span>PROJECT IMAGE ${project.number}</span>`;
-  return `<article class="project reveal"><span class="project-number">${project.number}</span><a class="project-visual" href="#contact" aria-label="Ver ${project.name}">${visual}</a><div class="project-info"><h3>${project.name}</h3><p>${project.type}</p><p>${project.year}</p><a href="#contact">VIEW PROJECT <span>→</span></a></div></article>`;
+    : `<span>PROJECT IMAGE</span>`;
+  return `<article class="project"><div class="project-visual" aria-label="${project.name}">${visual}</div><div class="project-info"><h3>${project.name}</h3><p>${project.type}</p><p>${project.year}</p></div></article>`;
 }).join('');
+
+const projectDots = document.querySelector('#project-dots');
+let activeProject = 0;
+
+const sliderViewport = document.querySelector('.slider-viewport');
+projectDots.innerHTML = projects.map((project, index) => `<button class="slider-dot${index === 0 ? ' is-active' : ''}" type="button" aria-label="Ver ${project.name}" aria-current="${index === 0 ? 'true' : 'false'}"></button>`).join('');
+
+function showProject(index) {
+  activeProject = (index + projects.length) % projects.length;
+  const activeSlide = projectsContainer.children[activeProject];
+  const offset = activeSlide.offsetLeft - (sliderViewport.clientWidth - activeSlide.clientWidth) / 2;
+  projectsContainer.style.transform = `translateX(-${offset}px)`;
+  projectDots.querySelectorAll('.slider-dot').forEach((dot, dotIndex) => {
+    const isActive = dotIndex === activeProject;
+    dot.classList.toggle('is-active', isActive);
+    dot.setAttribute('aria-current', String(isActive));
+  });
+}
+
+projectDots.querySelectorAll('.slider-dot').forEach((dot, index) => dot.addEventListener('click', () => showProject(index)));
+projectsContainer.querySelectorAll('.project').forEach((project, index) => project.addEventListener('click', () => showProject(index)));
+projectDots.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowRight') showProject(activeProject + 1);
+  if (event.key === 'ArrowLeft') showProject(activeProject - 1);
+});
+window.addEventListener('resize', () => showProject(activeProject));
 
 const menuToggle = document.querySelector('.menu-toggle');
 const menu = document.querySelector('.fullscreen-menu');
