@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Productora y editora audiovisual.">
+  <title>501 Studio — Producción audiovisual</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="#top" aria-label="501 Studio, inicio">501<span>STUDIO</span></a>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-menu"><span>+</span></button>
+  </header>
+
+  <nav class="fullscreen-menu" id="site-menu" aria-label="Navegación principal" aria-hidden="true">
+    <div class="menu-inner">
+      <div class="menu-label">NAVEGACIÓN</div>
+      <div class="menu-links">
+        <a href="#work">PORTFOLIO</a><a href="#services">QUÉ HACEMOS</a><a href="#bts">BEHIND THE SCENES</a><a href="#about">ABOUT</a><a href="#contact">CONTACTO</a>
+      </div>
+      <div class="menu-social"><a href="#" target="_blank" rel="noreferrer">INSTAGRAM ↗</a><a href="mailto:hola@501studio.com">EMAIL ↗</a></div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero section-pad">
+      <p class="eyebrow reveal">501 STUDIO</p>
+      <h1 class="reveal">PRODUCCIÓN<br>AUDIOVISUAL</h1>
+      <p class="hero-copy reveal">Creamos historias que merecen<br>ser vistas.</p>
+      <!-- Reemplazar este bloque por un iframe de Vimeo o YouTube cuando esté disponible. -->
+      <div class="reel-placeholder reveal" aria-label="Espacio reservado para reel de video"><span>REEL VIDEO</span><span class="play-mark">↗</span></div>
+    </section>
+
+    <section class="work section-pad" id="work">
+      <div class="section-heading reveal"><p class="eyebrow">01 — PORTFOLIO</p><h2>MEJORES<br>TRABAJOS</h2></div>
+      <!-- Mantener aquí los 4 o 5 mejores trabajos. Se editan en js/main.js. -->
+      <div class="projects" id="projects"></div>
+    </section>
+
+    <section class="services section-pad" id="services">
+      <div class="section-heading reveal"><p class="eyebrow">02 — SERVICIOS</p><h2>QUÉ HACEMOS</h2></div>
+      <div class="accordion reveal">
+        <article class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><span class="service-number">01</span><span>PRODUCCIÓN AUDIOVISUAL INTEGRAL</span><b>+</b></button><div class="accordion-panel"><div><h3>PRODUCCIÓN AUDIOVISUAL INTEGRAL</h3><p>Desarrollo de texto.</p></div></div></article>
+        <article class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><span class="service-number">02</span><span>SUBCONTRATACIÓN B2B</span><b>+</b></button><div class="accordion-panel"><div><h3>SUBCONTRATACIÓN B2B</h3><p>Edición o producción para otras productoras.</p><p>Desarrollo de texto.</p></div></div></article>
+        <article class="accordion-item"><button class="accordion-trigger" aria-expanded="false"><span class="service-number">03</span><span>¿ES PARA VOS NUESTRO SERVICIO?</span><b>+</b></button><div class="accordion-panel"><div><h3>¿ES PARA VOS NUESTRO SERVICIO?</h3><p>Desarrollo de texto.</p></div></div></article>
+      </div>
+    </section>
+
+    <section class="bts section-pad" id="bts">
+      <div class="bts-heading reveal"><p class="eyebrow">03 — ON SET</p><h2>BEHIND<br>THE<br>SCENES</h2></div>
+      <!-- Sustituir los bloques por imágenes locales dentro de assets/images. -->
+      <div class="bts-gallery reveal">
+        <div class="bts-image bts-1">BTS IMAGE 01</div><div class="bts-image bts-2">BTS IMAGE 02</div><div class="bts-image bts-3">BTS IMAGE 03</div><div class="bts-image bts-4">BTS IMAGE 04</div><div class="bts-image bts-5">BTS IMAGE 05</div><div class="bts-image bts-6">BTS IMAGE 06</div>
+      </div>
+    </section>
+
+    <section class="about section-pad" id="about">
+      <div class="section-heading reveal"><p class="eyebrow">04 — ABOUT</p><h2>ABOUT US</h2></div>
+      <div class="about-copy reveal"><p>Somos una productora y editora audiovisual. Trabajamos ideas, imágenes y ritmo para darle a cada proyecto su propia forma.</p><p>Nos gusta involucrarnos desde el principio: encontrar el tono, ordenar la historia y llevarla hasta la pantalla con atención al detalle.</p></div>
+    </section>
+
+    <section class="contact section-pad" id="contact">
+      <p class="eyebrow reveal">05 — PUNTO DE CONTACTO</p><h2 class="reveal">HABLEMOS<br>DE TU<br>PROYECTO.</h2>
+      <div class="contact-grid reveal"><div><p class="contact-intro">¿Tenés un proyecto?</p><a class="contact-link" href="mailto:hola@501studio.com">EMAIL ↗</a><a class="contact-link" href="#" target="_blank" rel="noreferrer">INSTAGRAM ↗</a></div>
+        <form action="" method="POST"><label>NOMBRE<input type="text" name="name" required></label><label>EMAIL<input type="email" name="email" required></label><label>MENSAJE<textarea name="message" rows="4" required></textarea></label><button type="submit">SEND <span>→</span></button></form>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><a class="logo" href="#top">501<span>STUDIO</span></a><span>© 2026</span><div><a href="#">INSTAGRAM</a><a href="mailto:hola@501studio.com">EMAIL</a></div></footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
