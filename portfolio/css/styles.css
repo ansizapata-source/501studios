@@ -124,7 +124,7 @@ h2 {
 }
 
 .logo {
-    font-size: 18px;
+    font-size: 25px;
     font-weight: 900;
     letter-spacing: -.08em;
     line-height: .8;
@@ -205,8 +205,8 @@ h2 {
 .menu-links a {
     font-size: clamp(40px, 6vw, 84px);
     font-weight: 900;
-    letter-spacing: -.08em;
-    line-height: .94;
+    letter-spacing: -.05em;
+    line-height: 1.94;
     width: fit-content;
 }
 
@@ -363,6 +363,7 @@ h2 {
     gap: 10px;
     justify-content: center;
     margin-top: 35px;
+    margin-bottom: 5px;
 }
 
 .slider-dot {
