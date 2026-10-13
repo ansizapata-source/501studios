@@ -28,6 +28,7 @@ textarea {
 
 /* GLOBAL */
 :root {
+    --accent: #8fa2b8;
     --bg: #101010;
     --text: #f1f1f1;
     --muted: #a5a5a5;
@@ -58,10 +59,20 @@ a {
 }
 
 .eyebrow {
-    color: var(--muted);
+    color: var(--accent);
     font-size: 11px;
     font-weight: 600;
     letter-spacing: .08em;
+}
+
+::selection {
+    background: var(--blue);
+    color: #f1f1f1;
+}
+
+::-moz-selection {
+    background: var(--blue);
+    color: #f1f1f1;
 }
 
 h1,
@@ -339,7 +350,7 @@ h2 {
 }
 
 .project-info p {
-    color: var(--muted);
+    color: var(--accent);
     display: inline-block;
     font-size: 12px;
     font-weight: 500;
@@ -355,7 +366,7 @@ h2 {
 }
 
 .slider-dot {
-    background: #555;
+    background: #536477;
     border: 0;
     border-radius: 50%;
     cursor: pointer;
@@ -367,18 +378,25 @@ h2 {
 
 .slider-dot:hover,
 .slider-dot:focus-visible {
-    background: #8fa2b8;
+    background: var(--accent);
     outline: none;
     transform: scale(1.15);
 }
 
 .slider-dot.is-active {
-    background: #f1f1f1;
+    background: var(--accent);
+    transform: scale(1.35);
 }
 
 /* SERVICES */
 .services {
+    --accent: var(--blue);
+    --line: #b8b8b8;
+    --muted: #5c5c5c;
+    --text: #101010;
+    background: #f1f1f1;
     border-top: 1px solid var(--line);
+    color: var(--text);
 }
 
 .accordion {
@@ -408,14 +426,14 @@ h2 {
 }
 
 .service-number {
-    color: #8fa2b8;
+    color: var(--blue);
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0;
 }
 
 .accordion-trigger b {
-    color: #8fa2b8;
+    color: var(--blue);
     font-size: 28px;
     font-weight: 400;
     transition: transform .3s ease;
@@ -423,7 +441,7 @@ h2 {
 
 .accordion-trigger:hover,
 .accordion-item.is-open .accordion-trigger {
-    color: #a9bbcd;
+    color: var(--blue);
 }
 
 .accordion-item.is-open .accordion-trigger b {
@@ -447,7 +465,7 @@ h2 {
 }
 
 .accordion-panel h3 {
-    color: #a9bbcd;
+    color: var(--blue);
     font-size: 15px;
     font-weight: 700;
     letter-spacing: -.03em;
@@ -472,7 +490,7 @@ h2 {
 }
 
 .accordion-panel li:before {
-    color: #8fa2b8;
+    color: var(--blue);
     content: '— ';
 }
 
@@ -548,35 +566,15 @@ h2 {
     width: 70%;
 }
 
-/* ABOUT */
-.about {
-    border-top: 1px solid var(--line);
-}
-
-.about-copy {
-    margin-left: 35%;
-    max-width: 690px;
-}
-
-.about-copy p {
-    font-size: clamp(19px, 1.75vw, 26px);
-    font-weight: 500;
-    letter-spacing: -.04em;
-    line-height: 1.15;
-    margin-bottom: 26px;
-}
-
-.about-copy .about-place {
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .08em;
-    margin-top: 70px;
-}
-
 /* CONTACT */
 .contact {
+    --accent: var(--blue);
+    --line: #b8b8b8;
+    --muted: #5c5c5c;
+    --text: #101010;
+    background: #f1f1f1;
     border-top: 1px solid var(--line);
+    color: var(--text);
 }
 
 .contact h2 {
@@ -591,14 +589,14 @@ h2 {
 }
 
 .contact-intro {
-    color: #a9bbcd;
+    color: var(--blue);
     font-size: 20px;
     font-weight: 500;
     margin-bottom: 42px;
 }
 
 .contact-link {
-    border-bottom: 1px solid #8fa2b8;
+    border-bottom: 1px solid var(--blue);
     display: block;
     font-size: 11px;
     font-weight: 600;
@@ -614,7 +612,7 @@ h2 {
 }
 
 .contact label {
-    color: #8fa2b8;
+    color: var(--blue);
     font-size: 10px;
     font-weight: 600;
     letter-spacing: .08em;
@@ -637,14 +635,14 @@ h2 {
 
 .contact input:focus,
 .contact textarea:focus {
-    border-color: #8fa2b8;
+    border-color: var(--blue);
 }
 
 .contact form button {
     align-self: flex-start;
     background: transparent;
     border: 0;
-    color: #a9bbcd;
+    color: var(--blue);
     cursor: pointer;
     font-size: 12px;
     font-weight: 700;
@@ -787,14 +785,6 @@ h2 {
         height: 65vw;
         min-height: 0;
         width: 100%;
-    }
-
-    .about-copy {
-        margin-left: 0;
-    }
-
-    .about-copy p {
-        font-size: 19px;
     }
 
     .contact h2 {
