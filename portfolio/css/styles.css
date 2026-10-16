@@ -82,7 +82,7 @@ h3 {
 }
 
 h2 {
-    font-size: clamp(46px, 8.2vw, 124px);
+    font-size: clamp(42px, 8.2vw, 100px);
     font-weight: 900;
     line-height: .84;
 }
@@ -206,7 +206,8 @@ h2 {
     font-size: clamp(40px, 6vw, 84px);
     font-weight: 900;
     letter-spacing: -.05em;
-    line-height: 1.94;
+    line-height: .94;
+    margin-top: 1em;
     width: fit-content;
 }
 
@@ -232,7 +233,7 @@ h2 {
 }
 
 .hero h1 {
-    font-size: clamp(52px, 10vw, 150px);
+    font-size: clamp(42px, 10vw, 100px);
     font-weight: 900;
     line-height: .79;
     margin: 42px 0 38px;
@@ -579,7 +580,6 @@ h2 {
 }
 
 .contact h2 {
-    font-size: clamp(56px, 10.5vw, 158px);
     margin: 38px 0 90px;
 }
 
