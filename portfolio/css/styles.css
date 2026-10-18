@@ -55,7 +55,7 @@ a {
 }
 
 .section-pad {
-    padding: 160px 28px;
+    padding: 120px 80px;
 }
 
 .eyebrow {
@@ -82,7 +82,7 @@ h3 {
 }
 
 h2 {
-    font-size: clamp(42px, 8.2vw, 100px);
+    font-size: clamp(42px, 8.2vw, 70px);
     font-weight: 900;
     line-height: .84;
 }
@@ -92,7 +92,7 @@ h2 {
     align-items: flex-start;
     justify-content: space-between;
     gap: 30px;
-    margin-bottom: 100px;
+    margin-bottom: 75px;
 }
 
 .section-heading h2 {
@@ -116,7 +116,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     left: 0;
-    padding: 23px 28px;
+    padding: 80px;
     position: absolute;
     top: 0;
     width: 100%;
@@ -124,7 +124,7 @@ h2 {
 }
 
 .logo {
-    font-size: 25px;
+    font-size: 50px;
     font-weight: 900;
     letter-spacing: -.08em;
     line-height: .8;
@@ -132,7 +132,7 @@ h2 {
 
 .logo span {
     display: block;
-    font-size: 9px;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: .14em;
     margin-left: 1px;
@@ -168,7 +168,7 @@ h2 {
     display: grid;
     inset: 0;
     opacity: 0;
-    padding: 100px 28px 35px;
+    padding: 200px 80px 35px;
     pointer-events: none;
     position: fixed;
     transition: opacity .4s ease;
@@ -230,7 +230,7 @@ h2 {
 .hero {
     position: relative;
     min-height: 100vh;
-    padding-top: 158px;
+    padding-top: 200px;
     overflow: hidden;
     isolation: isolate;
 }
@@ -239,7 +239,7 @@ h2 {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgb(0 0 0 / 75%);
+    background: rgb(0 0 0 / 80%);
     z-index: -1;
     pointer-events: none;
 }
@@ -311,7 +311,7 @@ h2 {
 .work-slider {
     overflow: hidden;
     width: 100vw;
-    margin-left: -28px;
+    margin-left: -80px;
 }
 
 .slider-viewport {
@@ -320,8 +320,8 @@ h2 {
 
 .projects {
     display: flex;
-    gap: 18px;
-    padding: 0 8%;
+    gap: 100px;
+    padding: 0 22%;
     transition: transform .55s ease;
 }
 
