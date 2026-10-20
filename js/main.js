@@ -1,17 +1,18 @@
 const projects = [
-  { name: 'NORTE ABIERTO', type: 'Production / Editing', year: '2026', image: '' },
-  { name: 'EN MOVIMIENTO', type: 'Creative Direction / Film', year: '2026', image: '' },
-  { name: 'TIERRA FIRME', type: 'Production / Post-production', year: '2025', image: '' },
-  { name: 'NOCHE LARGA', type: 'Film / Editing', year: '2025', image: '' },
-  { name: 'OTRA FORMA', type: 'Campaign / Content', year: '2025', image: '' }
+  { name: 'SPOT GDS', type: 'Production / Editing', year: '2026', videoUrl: 'https://pub-1e8c1ed9130c49e3b7a11b665cfcde03.r2.dev/Spot_GDS_v02.mp4' },
+  { name: 'Spot Hidráulica Mattig', type: 'Production / Editing', year: '2026', videoUrl: 'https://pub-1e8c1ed9130c49e3b7a11b665cfcde03.r2.dev/Spot_HM_vf.mp4', moreInfoUrl: 'https://www.behance.net/gallery/252637141/Spot-Publicitario-Hidraulica-Mattig' },
+  { name: 'EN MOVIMIENTO', type: 'Creative Direction / Film', year: '2026', videoUrl: '' },
+  { name: 'TIERRA FIRME', type: 'Production / Post-production', year: '2025', videoUrl: '' },
+  { name: 'NOCHE LARGA', type: 'Film / Editing', year: '2025', videoUrl: '' },
+  { name: 'OTRA FORMA', type: 'Campaign / Content', year: '2025', videoUrl: '' }
 ];
 
 const projectsContainer = document.querySelector('#projects');
-projectsContainer.innerHTML = projects.map((project) => {
-  const visual = project.image
-    ? `<img src="${project.image}" alt="${project.name}">`
+projectsContainer.innerHTML = projects.map((project, index) => {
+  const visual = project.videoUrl
+    ? `<video preload="metadata" playsinline controls><source src="${project.videoUrl}" alt="${project.name}" type="video/mp4"></source></video>`
     : `<span>PROJECT IMAGE</span>`;
-  return `<article class="project"><div class="project-visual" aria-label="${project.name}">${visual}</div><div class="project-info"><h3>${project.name}</h3><p>${project.type}</p><p>${project.year}</p></div></article>`;
+  return `<article class="project${index === 0 ? ' is-active' : ''}"><div class="project-visual" aria-label="${project.name}">${visual}</div><div class="project-info"><h3>${project.name}</h3><p>${project.type}</p><p>${project.year}</p></div></article>`;
 }).join('');
 
 const projectDots = document.querySelector('#project-dots');
@@ -25,6 +26,9 @@ function showProject(index) {
   const activeSlide = projectsContainer.children[activeProject];
   const offset = activeSlide.offsetLeft - (sliderViewport.clientWidth - activeSlide.clientWidth) / 2;
   projectsContainer.style.transform = `translateX(-${offset}px)`;
+  projectsContainer.querySelectorAll('.project').forEach((slide, slideIndex) => {
+    slide.classList.toggle('is-active', slideIndex === activeProject);
+  });
   projectDots.querySelectorAll('.slider-dot').forEach((dot, dotIndex) => {
     const isActive = dotIndex === activeProject;
     dot.classList.toggle('is-active', isActive);

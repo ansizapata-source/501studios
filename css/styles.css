@@ -330,6 +330,15 @@ h2 {
     flex: 0 0 100%;
     display: grid;
     grid-template-columns: 1fr;
+    position: relative;
+}
+
+.project:not(.is-active)::after {
+    content: '';
+    cursor: pointer;
+    inset: 0;
+    position: absolute;
+    z-index: 2;
 }
 
 .project-visual {
@@ -339,6 +348,11 @@ h2 {
     aspect-ratio: 16 / 9;
     justify-content: center;
     overflow: hidden;
+}
+
+.project-visual video {
+    height: 100%;
+    width: 100%;
 }
 
 .project:nth-child(2) .project-visual,
