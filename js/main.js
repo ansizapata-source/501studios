@@ -12,7 +12,10 @@ projectsContainer.innerHTML = projects.map((project, index) => {
   const visual = project.videoUrl
     ? `<video preload="metadata" playsinline controls><source src="${project.videoUrl}" alt="${project.name}" type="video/mp4"></source></video>`
     : `<span>PROJECT IMAGE</span>`;
-  return `<article class="project${index === 0 ? ' is-active' : ''}"><div class="project-visual" aria-label="${project.name}">${visual}</div><div class="project-info"><h3>${project.name}</h3><p>${project.type}</p><p>${project.year}</p></div></article>`;
+  const moreInfo = project.moreInfoUrl
+    ? `<a class="project-more-info" href="${project.moreInfoUrl}" target="_blank" rel="noreferrer">VER MÁS <span aria-hidden="true">↗</span></a>`
+    : '';
+  return `<article class="project${index === 0 ? ' is-active' : ''}"><div class="project-visual" aria-label="${project.name}">${visual}</div><div class="project-info"><h3>${project.name}</h3><p>${project.type}</p><p>${project.year}</p>${moreInfo}</div></article>`;
 }).join('');
 
 const projectDots = document.querySelector('#project-dots');
