@@ -348,11 +348,30 @@ h2 {
     aspect-ratio: 16 / 9;
     justify-content: center;
     overflow: hidden;
+    position: relative;
 }
 
 .project-visual video {
+    display: block;
     height: 100%;
+    object-fit: cover;
     width: 100%;
+}
+
+.video-toggle {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    inset: 0 0 48px;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.video-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -5px;
 }
 
 .project:nth-child(2) .project-visual,

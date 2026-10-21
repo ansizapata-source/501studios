@@ -10,16 +10,20 @@ const projects = [
 const projectsContainer = document.querySelector('#projects');
 projectsContainer.innerHTML = projects.map((project, index) => {
   const visual = project.videoUrl
-    ? `<video preload="metadata" playsinline controls><source src="${project.videoUrl}" alt="${project.name}" type="video/mp4"></source></video>`
+    ? `<video preload="metadata" playsinline${index === 0 ? ' controls' : ''}><source src="${project.videoUrl}" alt="${project.name}" type="video/mp4"></source></video>`
     : `<span>PROJECT IMAGE</span>`;
+  const videoToggle = project.videoUrl
+    ? `<button class="video-toggle" type="button" aria-label="Reproducir o pausar ${project.name}"></button>`
+    : '';
   const moreInfo = project.moreInfoUrl
     ? `<a class="project-more-info" href="${project.moreInfoUrl}" target="_blank" rel="noreferrer">VER MÁS <span aria-hidden="true">↗</span></a>`
     : '';
-  return `<article class="project${index === 0 ? ' is-active' : ''}"><div class="project-visual" aria-label="${project.name}">${visual}</div><div class="project-info"><h3>${project.name}</h3><p>${project.type}</p><p>${project.year}</p>${moreInfo}</div></article>`;
+  return `<article class="project${index === 0 ? ' is-active' : ''}"><div class="project-visual" aria-label="${project.name}">${visual}${videoToggle}</div><div class="project-info"><h3>${project.name}</h3><p>${project.type}</p><p>${project.year}</p>${moreInfo}</div></article>`;
 }).join('');
 
 const projectDots = document.querySelector('#project-dots');
 let activeProject = 0;
+let videoControlsTimer;
 
 const sliderViewport = document.querySelector('.slider-viewport');
 projectDots.innerHTML = projects.map((project, index) => `<button class="slider-dot${index === 0 ? ' is-active' : ''}" type="button" aria-label="Ver ${project.name}" aria-current="${index === 0 ? 'true' : 'false'}"></button>`).join('');
@@ -31,16 +35,32 @@ function showProject(index) {
   projectsContainer.style.transform = `translateX(-${offset}px)`;
   projectsContainer.querySelectorAll('.project').forEach((slide, slideIndex) => {
     slide.classList.toggle('is-active', slideIndex === activeProject);
+    slide.querySelectorAll('video').forEach((video) => {
+      video.controls = false;
+      if (slideIndex !== activeProject) video.pause();
+    });
   });
   projectDots.querySelectorAll('.slider-dot').forEach((dot, dotIndex) => {
     const isActive = dotIndex === activeProject;
     dot.classList.toggle('is-active', isActive);
     dot.setAttribute('aria-current', String(isActive));
   });
+  window.clearTimeout(videoControlsTimer);
+  videoControlsTimer = window.setTimeout(() => {
+    activeSlide.querySelectorAll('video').forEach((video) => { video.controls = true; });
+  }, 560);
 }
 
 projectDots.querySelectorAll('.slider-dot').forEach((dot, index) => dot.addEventListener('click', () => showProject(index)));
-projectsContainer.querySelectorAll('.project').forEach((project, index) => project.addEventListener('click', () => showProject(index)));
+projectsContainer.querySelectorAll('.project').forEach((project, index) => project.addEventListener('click', () => {
+  if (index !== activeProject) showProject(index);
+}));
+projectsContainer.querySelectorAll('.video-toggle').forEach((toggle) => toggle.addEventListener('click', (event) => {
+  event.stopPropagation();
+  const video = toggle.closest('.project').querySelector('video');
+  if (video.paused) video.play().catch(() => {});
+  else video.pause();
+}));
 projectDots.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowRight') showProject(activeProject + 1);
   if (event.key === 'ArrowLeft') showProject(activeProject - 1);
