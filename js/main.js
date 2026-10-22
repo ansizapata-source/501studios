@@ -32,7 +32,7 @@ function showProject(index) {
   activeProject = (index + projects.length) % projects.length;
   const activeSlide = projectsContainer.children[activeProject];
   const offset = activeSlide.offsetLeft - (sliderViewport.clientWidth - activeSlide.offsetWidth) / 2;
-  projectsContainer.style.transform = `translateX(-${offset}px)`;
+  sliderViewport.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
   projectsContainer.querySelectorAll('.project').forEach((slide, slideIndex) => {
     slide.classList.toggle('is-active', slideIndex === activeProject);
     slide.querySelectorAll('video').forEach((video) => {

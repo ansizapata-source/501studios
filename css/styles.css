@@ -315,15 +315,22 @@ h2 {
 }
 
 .slider-viewport {
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
     touch-action: pan-y;
+}
+
+.slider-viewport::-webkit-scrollbar {
+    display: none;
 }
 
 .projects {
     display: flex;
     gap: 100px;
     padding: 0 22%;
-    transition: transform .55s ease;
 }
 
 .project {
@@ -333,6 +340,7 @@ h2 {
     grid-template-columns: 1fr;
     min-width: 0;
     position: relative;
+    scroll-snap-align: center;
 }
 
 .project:not(.is-active)::after {
