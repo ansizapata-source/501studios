@@ -316,6 +316,7 @@ h2 {
 
 .slider-viewport {
     overflow: hidden;
+    touch-action: pan-y;
 }
 
 .projects {
@@ -357,8 +358,7 @@ h2 {
     width: 100%;
 }
 
-.project:nth-child(2) .project-visual,
-.project:nth-child(5) .project-visual {
+.project .project-visual {
     background: var(--blue);
 }
 
@@ -803,12 +803,12 @@ h2 {
     }
 
     .projects {
-        gap: 12px;
-        padding: 0 8%;
+        gap: 30px;
+        padding: 0 12%;
     }
 
     .project-visual {
-        aspect-ratio: 9 / 16;
+        aspect-ratio: 1 / 1;
     }
 
     .project-info {

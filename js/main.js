@@ -1,6 +1,7 @@
 const projects = [
-  { name: 'SPOT GDS', type: 'Production / Editing', year: '2026', videoUrl: 'https://pub-1e8c1ed9130c49e3b7a11b665cfcde03.r2.dev/Spot_GDS_v02.mp4' },
+  { name: 'Spot GDS', type: 'Production / Editing', year: '2026', videoUrl: 'https://pub-1e8c1ed9130c49e3b7a11b665cfcde03.r2.dev/Spot_GDS_v02.mp4' },
   { name: 'Spot Hidráulica Mattig', type: 'Production / Editing', year: '2026', videoUrl: 'https://pub-1e8c1ed9130c49e3b7a11b665cfcde03.r2.dev/Spot_HM_vf.mp4', moreInfoUrl: 'https://www.behance.net/gallery/252637141/Spot-Publicitario-Hidraulica-Mattig' },
+  { name: 'Fiesta Nacional Del Tractor', type: 'Production / Editing', year: '2026', videoUrl: 'https://pub-1e8c1ed9130c49e3b7a11b665cfcde03.r2.dev/FiestaNacDelTractor_2026.mp4' },
   { name: 'EN MOVIMIENTO', type: 'Creative Direction / Film', year: '2026', videoUrl: '' },
   { name: 'TIERRA FIRME', type: 'Production / Post-production', year: '2025', videoUrl: '' },
   { name: 'NOCHE LARGA', type: 'Film / Editing', year: '2025', videoUrl: '' },
@@ -21,6 +22,8 @@ projectsContainer.innerHTML = projects.map((project, index) => {
 const projectDots = document.querySelector('#project-dots');
 let activeProject = 0;
 let videoControlsTimer;
+let touchStart;
+let ignoreProjectClick = false;
 
 const sliderViewport = document.querySelector('.slider-viewport');
 projectDots.innerHTML = projects.map((project, index) => `<button class="slider-dot${index === 0 ? ' is-active' : ''}" type="button" aria-label="Ver ${project.name}" aria-current="${index === 0 ? 'true' : 'false'}"></button>`).join('');
@@ -50,8 +53,28 @@ function showProject(index) {
 
 projectDots.querySelectorAll('.slider-dot').forEach((dot, index) => dot.addEventListener('click', () => showProject(index)));
 projectsContainer.querySelectorAll('.project').forEach((project, index) => project.addEventListener('click', () => {
-  if (index !== activeProject) showProject(index);
+  if (!ignoreProjectClick && index !== activeProject) showProject(index);
 }));
+
+sliderViewport.addEventListener('touchstart', (event) => {
+  const touch = event.changedTouches[0];
+  touchStart = { x: touch.clientX, y: touch.clientY };
+}, { passive: true });
+
+sliderViewport.addEventListener('touchend', (event) => {
+  if (!touchStart) return;
+  const touch = event.changedTouches[0];
+  const distanceX = touch.clientX - touchStart.x;
+  const distanceY = touch.clientY - touchStart.y;
+  touchStart = null;
+
+  if (Math.abs(distanceX) < 45 || Math.abs(distanceX) <= Math.abs(distanceY)) return;
+  ignoreProjectClick = true;
+  showProject(activeProject + (distanceX < 0 ? 1 : -1));
+  window.setTimeout(() => { ignoreProjectClick = false; }, 350);
+}, { passive: true });
+
+sliderViewport.addEventListener('touchcancel', () => { touchStart = null; }, { passive: true });
 projectDots.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowRight') showProject(activeProject + 1);
   if (event.key === 'ArrowLeft') showProject(activeProject - 1);
