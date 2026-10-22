@@ -23,7 +23,7 @@ const projectDots = document.querySelector('#project-dots');
 let activeProject = 0;
 let videoControlsTimer;
 let touchStart;
-let ignoreProjectClick = false;
+let ignoreProjectClickUntil = 0;
 
 const sliderViewport = document.querySelector('.slider-viewport');
 projectDots.innerHTML = projects.map((project, index) => `<button class="slider-dot${index === 0 ? ' is-active' : ''}" type="button" aria-label="Ver ${project.name}" aria-current="${index === 0 ? 'true' : 'false'}"></button>`).join('');
@@ -31,7 +31,7 @@ projectDots.innerHTML = projects.map((project, index) => `<button class="slider-
 function showProject(index) {
   activeProject = (index + projects.length) % projects.length;
   const activeSlide = projectsContainer.children[activeProject];
-  const offset = activeSlide.offsetLeft - (sliderViewport.clientWidth - activeSlide.clientWidth) / 2;
+  const offset = activeSlide.offsetLeft - (sliderViewport.clientWidth - activeSlide.offsetWidth) / 2;
   projectsContainer.style.transform = `translateX(-${offset}px)`;
   projectsContainer.querySelectorAll('.project').forEach((slide, slideIndex) => {
     slide.classList.toggle('is-active', slideIndex === activeProject);
@@ -53,7 +53,7 @@ function showProject(index) {
 
 projectDots.querySelectorAll('.slider-dot').forEach((dot, index) => dot.addEventListener('click', () => showProject(index)));
 projectsContainer.querySelectorAll('.project').forEach((project, index) => project.addEventListener('click', () => {
-  if (!ignoreProjectClick && index !== activeProject) showProject(index);
+  if (Date.now() >= ignoreProjectClickUntil && index !== activeProject) showProject(index);
 }));
 
 sliderViewport.addEventListener('touchstart', (event) => {
@@ -69,9 +69,8 @@ sliderViewport.addEventListener('touchend', (event) => {
   touchStart = null;
 
   if (Math.abs(distanceX) < 45 || Math.abs(distanceX) <= Math.abs(distanceY)) return;
-  ignoreProjectClick = true;
+  ignoreProjectClickUntil = Date.now() + 700;
   showProject(activeProject + (distanceX < 0 ? 1 : -1));
-  window.setTimeout(() => { ignoreProjectClick = false; }, 350);
 }, { passive: true });
 
 sliderViewport.addEventListener('touchcancel', () => { touchStart = null; }, { passive: true });
