@@ -358,7 +358,6 @@ h2 {
 
 .project-visual {
     align-items: center;
-    background: #202020;
     display: flex;
     aspect-ratio: 16 / 9;
     justify-content: center;
@@ -369,11 +368,7 @@ h2 {
 .project-visual video {
     display: block;
     height: 100%;
-    width: 100%;
-}
-
-.project .project-visual {
-    background: var(--blue);
+    max-width: 100%;
 }
 
 .project-visual span {
@@ -424,7 +419,7 @@ h2 {
     font-size: 11px;
     font-weight: 700;
     letter-spacing: .06em;
-    margin-left: 8px;
+    margin-right: 10px;
     margin-top: 7px;
 }
 
