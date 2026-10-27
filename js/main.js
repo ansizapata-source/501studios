@@ -1,11 +1,9 @@
 const projects = [
   { name: 'Spot GDS', type: 'Production / Editing', year: '2026', videoUrl: 'https://pub-1e8c1ed9130c49e3b7a11b665cfcde03.r2.dev/Spot_GDS_v02.mp4' },
   { name: 'Spot Hidráulica Mattig', type: 'Production / Editing', year: '2026', videoUrl: 'https://pub-1e8c1ed9130c49e3b7a11b665cfcde03.r2.dev/Spot_HM_vf.mp4', moreInfoUrl: 'https://www.behance.net/gallery/252637141/Spot-Publicitario-Hidraulica-Mattig' },
-  { name: 'Fiesta Nacional Del Tractor', type: 'Production / Editing', year: '2026', videoUrl: 'https://pub-1e8c1ed9130c49e3b7a11b665cfcde03.r2.dev/FiestaNacDelTractor_2026.mp4' },
-  { name: 'EN MOVIMIENTO', type: 'Creative Direction / Film', year: '2026', videoUrl: '' },
-  { name: 'TIERRA FIRME', type: 'Production / Post-production', year: '2025', videoUrl: '' },
-  { name: 'NOCHE LARGA', type: 'Film / Editing', year: '2025', videoUrl: '' },
-  { name: 'OTRA FORMA', type: 'Campaign / Content', year: '2025', videoUrl: '' }
+  { name: 'Fiesta Nacional Del Tractor edición 2026', type: 'Production / Editing', year: '2026', videoUrl: 'https://pub-1e8c1ed9130c49e3b7a11b665cfcde03.r2.dev/FiestaNacDelTractor_2026.mp4' },
+  { name: 'Moltec x Tándem', type: 'Filming / Editing B2B', year: '2026', videoUrl: '' },
+  { name: 'Bounous x Tándem', type: 'Filming / Editing B2B', year: '2026', videoUrl: '' },
 ];
 
 const projectsContainer = document.querySelector('#projects');
@@ -14,9 +12,9 @@ projectsContainer.innerHTML = projects.map((project, index) => {
     ? `<video preload="metadata" playsinline${index === 0 ? ' controls' : ''}><source src="${project.videoUrl}" alt="${project.name}" type="video/mp4"></source></video>`
     : `<span>PROJECT IMAGE</span>`;
   const moreInfo = project.moreInfoUrl
-    ? `<a class="project-more-info" href="${project.moreInfoUrl}" target="_blank" rel="noreferrer">VER MÁS <span aria-hidden="true">↗</span></a>`
+    ? `<p>-</p><a class="project-more-info" href="${project.moreInfoUrl}" target="_blank" rel="noreferrer">VER MÁS <span aria-hidden="true">↗</span></a>`
     : '';
-  return `<article class="project${index === 0 ? ' is-active' : ''}"><div class="project-visual" aria-label="${project.name}">${visual}</div><div class="project-info"><h3>${project.name}</h3><p>${project.type}</p><p>${project.year}</p>${moreInfo}</div></article>`;
+  return `<article class="project${index === 0 ? ' is-active' : ''}"><div class="project-visual" aria-label="${project.name}">${visual}</div><div class="project-info"><h3>${project.name}</h3><p>${project.type}</p><p>-</p><p>${project.year}</p>${moreInfo}</div></article>`;
 }).join('');
 
 const projectDots = document.querySelector('#project-dots');
