@@ -537,7 +537,7 @@ h2 {
 .accordion-panel>div {
     min-height: 0;
     overflow: hidden;
-    padding-left: 10%;
+    padding-left: calc(10% + 18px);
 }
 
 .accordion-item.is-open .accordion-panel {
@@ -553,7 +553,7 @@ h2 {
 }
 
 .accordion-panel p {
-    max-width: 550px;
+    max-width: 80%;
     padding-bottom: 16px;
 }
 
