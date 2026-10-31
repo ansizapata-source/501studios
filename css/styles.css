@@ -123,20 +123,15 @@ h2 {
     z-index: 10;
 }
 
-.logo {
-    font-size: 50px;
-    font-weight: 900;
-    letter-spacing: -.08em;
-    line-height: .8;
+.site-header .logo {
+    display: block;
+    line-height: 0;
 }
 
-.logo span {
+.site-header .logo img {
     display: block;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: .14em;
-    margin-left: 1px;
-    margin-top: 5px;
+    height: auto;
+    width: 150px;
 }
 
 .menu-toggle {
@@ -144,12 +139,12 @@ h2 {
     border: 0;
     color: var(--text);
     cursor: pointer;
-    font-size: 32px;
-    height: 35px;
+    font-size: 50px;
+    height: 60px;
     line-height: 1;
     padding: 0;
     position: relative;
-    width: 35px;
+    width: 60px;
     z-index: 12;
 }
 
@@ -168,7 +163,7 @@ h2 {
     display: grid;
     inset: 0;
     opacity: 0;
-    padding: 200px 80px 35px;
+    padding: 280px 80px 50px;
     pointer-events: none;
     position: fixed;
     transition: opacity .4s ease;
@@ -194,16 +189,20 @@ h2 {
     font-size: 11px;
     font-weight: 600;
     letter-spacing: .08em;
+    display: flex;
+    gap: 23px;
+    grid-column: 2;
 }
 
 .menu-links {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    grid-column: 2;
 }
 
 .menu-links a {
-    font-size: clamp(40px, 6vw, 84px);
+    font-size: clamp(40px, 6vw, 75px);
     font-weight: 900;
     letter-spacing: -.05em;
     line-height: .94;
@@ -215,12 +214,6 @@ h2 {
     color: var(--blue);
 }
 
-.menu-social {
-    display: flex;
-    gap: 23px;
-    grid-column: 2;
-}
-
 .menu-social a:hover,
 .site-footer a:hover {
     color: var(--blue);
@@ -230,9 +223,13 @@ h2 {
 .hero {
     position: relative;
     min-height: 100vh;
-    padding-top: 200px;
+    padding-top: 50vh;
     overflow: hidden;
     isolation: isolate;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    flex-direction: column;
 }
 
 .hero::before {
@@ -270,37 +267,6 @@ h2 {
     font-weight: 500;
     line-height: 1.35;
     text-align: right;
-}
-
-.reel-placeholder {
-    align-items: center;
-    background: var(--blue);
-    display: flex;
-    height: min(46vw, 630px);
-    justify-content: center;
-    margin-top: 110px;
-    position: relative;
-}
-
-.reel-placeholder:before {
-    border: 1px solid #93a5ba;
-    border-radius: 50%;
-    content: '';
-    height: 86px;
-    position: absolute;
-    width: 86px;
-}
-
-.reel-placeholder span {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .1em;
-    position: relative;
-}
-
-.reel-placeholder .play-mark {
-    font-size: 23px;
-    margin-left: 5px;
 }
 
 /* WORK */
@@ -759,11 +725,15 @@ h2 {
 /* RESPONSIVE */
 @media (max-width: 700px) {
     .section-pad {
-        padding: 100px 20px;
+        padding: 100px 30px;
     }
 
     .site-header {
-        padding: 20px;
+        padding: 30px;
+    }
+
+    .site-header .logo img {
+        width: 96px;
     }
 
     .menu-inner {
@@ -773,6 +743,12 @@ h2 {
 
     .menu-label {
         grid-row: 1;
+        grid-column: 1;
+    }
+
+    .menu-links {
+        grid-column: 1;
+        grid-row: 2;
     }
 
     .menu-social {
@@ -781,17 +757,11 @@ h2 {
     }
 
     .hero {
-        min-height: auto;
-        padding-top: 125px;
+        padding-top: 50vh;
     }
 
     .hero h1 {
         margin: 34px 0 27px;
-    }
-
-    .reel-placeholder {
-        height: 82vw;
-        margin-top: 80px;
     }
 
     .section-heading {
@@ -813,7 +783,7 @@ h2 {
     .work-slider {
         overflow: hidden;
         width: 100vw;
-        margin-left: -20px;
+        margin-left: -30px;
     }
 
     .projects {
